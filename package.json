@@ -18,14 +18,19 @@
     "styled-components": "^5.1.1",
     "typescript": "^4.9.5"
   },
-  "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
+  "devDependencies": {
+    "@craco/craco": "^7.1.0",
+    "@types/axios": "^0.9.36",
+    "@types/cors": "^2.8.19",
+    "@types/node": "^25.0.3",
+    "@types/react-icons": "^3.0.0",
+    "@types/styled-components": "^5.1.2"
   },
-  "eslintConfig": {
-    "extends": "react-app"
+  "scripts": {
+    "start": "craco start",
+    "build": "craco build",
+    "test": "craco test",
+    "eject": "react-scripts eject"
   },
   "browserslist": {
     "production": [
@@ -38,12 +43,5 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
-  },
-  "devDependencies": {
-    "@types/axios": "^0.9.36",
-    "@types/cors": "^2.8.19",
-    "@types/node": "^25.0.3",
-    "@types/react-icons": "^3.0.0",
-    "@types/styled-components": "^5.1.2"
   }
 }

@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 
 import {
   Container,
@@ -11,7 +11,7 @@ import {
   SupportIcon,
   ClockIcon,
   More,
-} from './styles';
+} from "./styles";
 
 const SellerInfo: React.FC = () => {
   return (
@@ -43,20 +43,23 @@ const SellerInfo: React.FC = () => {
           </div>
 
           <div>
-            <strong><SupportIcon /></strong>
+            <strong>
+              <SupportIcon />
+            </strong>
             <span>Presta um bom atendimento</span>
           </div>
 
           <div>
-            <strong><ClockIcon /></strong>
+            <strong>
+              <ClockIcon />
+            </strong>
             <span>Entrega dentro do prazo</span>
           </div>
-
-        </ReputationRow >
-      </ReputationCard >
+        </ReputationRow>
+      </ReputationCard>
 
       <More href="#">Ver mais dados do vendedor</More>
-    </Container >
+    </Container>
   );
 };
 

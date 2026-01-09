@@ -1,13 +1,18 @@
-import React from 'react';
+import React from "react";
 
-import GlobalStyles from './styles/GlobalStyles'
-import Layout from './components/Layout'
+import Layout from "@shared/layouts/Layout";
+import Product from "@modules/products/components/Product";
+
+import GlobalStyles from "./styles/GlobalStyles";
 
 function App() {
   return (
     <>
-      <Layout />
       <GlobalStyles />
+
+      <Layout>
+        <Product />
+      </Layout>
     </>
   );
 }

@@ -1,10 +1,19 @@
-import React from 'react';
+import React from "react";
 
-import tshirtImage from '../../assets/tshirt.png'
-import SellerInfo from '../SellerInfo';
-import ProductAction from '../ProductAction';
+import tshirtImage from "@shared/assets/tshirt.png";
 
-import { Container, Row, Panel, Column, Galery, Section, Description } from './styles';
+import SellerInfo from "@modules/products/components/SellerInfo";
+import ProductAction from "@modules/products/components/ProductAction";
+
+import {
+  Container,
+  Row,
+  Panel,
+  Column,
+  Galery,
+  Section,
+  Description,
+} from "./styles";
 
 const Product: React.FC = () => {
   return (
@@ -24,7 +33,7 @@ const Product: React.FC = () => {
         </Column>
 
         <Column>
-          <ProductAction/>
+          <ProductAction />
           <SellerInfo />
 
           <WarrantySection />
@@ -36,69 +45,69 @@ const Product: React.FC = () => {
   );
 };
 
-const WarrantySection = () => (
+const WarrantySection: React.FC = () => (
   <Section>
     <h4>Garantia</h4>
 
     <div>
       <span>
         <p className="title">Compra garantida com o Lorem Ipsum</p>
-        <p className="description">Receba o produto que você está esperando ou devolvemos o seu dinheiro </p>
+        <p className="description">
+          Receba o produto que você está esperando ou devolvemos o seu dinheiro
+        </p>
       </span>
+
       <span>
         <p className="title">Garantia do vendedor</p>
-        <p className="description">sem garantia </p>
+        <p className="description">Sem garantia</p>
       </span>
     </div>
 
     <a href="#">Saiba mais sobre garantia</a>
   </Section>
-)
+);
 
-const Info = () => (
+const Info: React.FC = () => (
   <Description>
     <h2>Descrição</h2>
 
     <p>
-      Gênero: Masculino
-      
-      Material principal: 100% Algodão Penteado fio 30.1
-      Tipo de manga: Curta
-      Tipo de gola: Gola redonda
+      Gênero: Masculino <br />
+      Material principal: 100% Algodão Penteado fio 30.1 <br />
+      Tipo de manga: Curta <br />
+      Tipo de gola: Gola redonda <br />
       Unidades por pacote: 1
-
-      Camiseta Lisa 100% Algodão Penteado Fio 30.1 GRAMATURA 160! ( não é fina ou transparente )
-
-      Gola redonda Corte Tradicional
-
-      » Tecido de alta durabilidade
-      » Camisetas Lisas confeccionadas com alta tecnologia.
-      » Dupla costura - Costuradas em máquinas e linhas de qualidade.
-
-      Tamanhos :
-      P - M - G - GG
-
-
       <br />
       <br />
-      Itens inclusos: <br />
-      - 1x Camiseta Branca <br />
-      - 1x Brinde cupom de desconto <br />
-      - 1x Brinde cupom de desconto <br />
-      - 1x Brinde cupom de desconto <br />
-      - 1x Brinde cupom de desconto <br />
+      Camiseta Lisa 100% Algodão Penteado Fio 30.1 GRAMATURA 160!
+      <br />
+      <br />
+      » Tecido de alta durabilidade <br />
+      » Alta tecnologia <br />
+      » Dupla costura
+      <br />
+      <br />
+      Tamanhos: P - M - G - GG
+      <br />
+      <br />
+      Itens inclusos:
+      <br />
+      - 1x Camiseta Branca
+      <br />
+      - Brindes promocionais
+      <br />
       <br />
       Dimensões:
-
-Altura x Largura
-
-P - 68cm 49cm
-M - 69cm 50cm
-G - 73cm 53cm
-GG - 74cm 55cm
-
+      <br />
+      P - 68cm x 49cm
+      <br />
+      M - 69cm x 50cm
+      <br />
+      G - 73cm x 53cm
+      <br />
+      GG - 74cm x 55cm
     </p>
   </Description>
-)
+);
 
 export default Product;

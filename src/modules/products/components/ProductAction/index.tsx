@@ -1,5 +1,6 @@
 import React from "react";
-import { createPreference } from "../../../../services/api";
+
+import { createPreference } from "@modules/products/services/products.service";
 
 import {
   Container,
@@ -24,7 +25,7 @@ const ProductAction: React.FC = () => {
     try {
       const data = await createPreference();
 
-      if (!data.id) {
+      if (!data?.id) {
         throw new Error("Preference ID não retornado");
       }
 
@@ -79,8 +80,8 @@ const ProductAction: React.FC = () => {
         <li>
           <ShieldIcon />
           <p>
-            Compra Garantida, receba o produto que está esperando ou devolvemos
-            seu dinheiro.
+            Compra Garantida, receba o produto que você está esperando ou
+            devolvemos seu dinheiro.
           </p>
         </li>
       </Benefits>

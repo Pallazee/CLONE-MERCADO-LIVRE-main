@@ -1,9 +1,20 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
-export const Container = styled.div``;
+export const Container = styled.div`
+  min-height: 100vh;
 
-export const Wrapper = styled.div`
-max-width: 1220px; /*largura máxima*/
-margin: 0 auto;  /*margin 0 pra cima e centralizado pros lados*/
-padding: 0 16px;  /*padding 0 pra cima e 16px para os lados*/
+  display: flex;
+  flex-direction: column;
+
+  background: var(--color-background);
+`;
+
+export const Wrapper = styled.main`
+  flex: 1;
+
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+
+  padding: 24px 16px;
 `;

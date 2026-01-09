@@ -1,21 +1,24 @@
-import React from 'react';
+import React from "react";
 
-import Product from '../Product';
-import Header from '../../shared/layouts/Header';
-import Footer from '../Footer';
+import Header from "@shared/layouts/Header";
+import Footer from "@shared/layouts/Footer";
 
-import { Container, Wrapper } from './styles';
+import { Container, Wrapper } from "./styles";
 
-const Layout: React.FC = () => {
+type LayoutProps = {
+  children: React.ReactNode;
+};
+
+const Layout: React.FC<LayoutProps> = ({ children }) => {
   return (
     <Container>
-      <Header/>
+      <Header />
 
       <Wrapper>
-        <Product />
+        {children}
       </Wrapper>
 
-      <Footer/>
+      <Footer />
     </Container>
   );
 };
