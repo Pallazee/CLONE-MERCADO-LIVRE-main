@@ -1,5 +1,5 @@
 import React from "react";
-import { createPreference } from "../../services/api";
+import { createPreference } from "../../../../services/api";
 
 import {
   Container,

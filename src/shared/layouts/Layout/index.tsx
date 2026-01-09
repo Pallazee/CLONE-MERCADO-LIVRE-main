@@ -1,7 +1,7 @@
 import React from 'react';
 
 import Product from '../Product';
-import Header from '../Header';
+import Header from '../../shared/layouts/Header';
 import Footer from '../Footer';
 
 import { Container, Wrapper } from './styles';
