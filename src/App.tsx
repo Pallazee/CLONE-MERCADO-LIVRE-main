@@ -1,7 +1,8 @@
 import React from "react";
 
 import Layout from "@shared/layouts/Layout";
-import Product from "@modules/products/components/Product";
+import ProductPage from "@modules/products/pages/ProductPage";
+
 
 import GlobalStyles from "./styles/GlobalStyles";
 
@@ -11,7 +12,7 @@ function App() {
       <GlobalStyles />
 
       <Layout>
-        <Product />
+        <ProductPage />
       </Layout>
     </>
   );

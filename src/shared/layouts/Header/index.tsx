@@ -1,38 +1,24 @@
 import React from "react";
 
-import logo from "../../assets/logo-mercado-livre.png";
-
-import { Container, Img, Nav } from "./styles";
+import logo from "@shared/assets/mercado-livre-logo.png";
+import { Container, Content, Logo, Nav } from "./styles";
 
 const Header: React.FC = () => {
   return (
     <Container>
-      <header>
-        <div className='header-content'>
-          <div className='logo'>
-            <a href='#'>
-              <Img
-                alt='logo-mercado-livre'
-                title='Logo Do Mercado Livre'
-                src={logo}
-              />
-            </a>
-          </div>
-          <Nav className='nav'>
-            <ul>
-              <li>
-                <a href='#'>Cadastre-se</a>
-              </li>
-              <li>
-                <a href='#'>Entre</a>
-              </li>
-              <li>
-                <a href='#'>Compras</a>
-              </li>
-            </ul>
-          </Nav>
-        </div>
-      </header>
+      <Content>
+        <a href="/" aria-label="Página inicial">
+          <Logo src={logo} alt="Mercado Livre" />
+        </a>
+
+        <Nav>
+          <ul>
+            <li><a href="#">Cadastre-se</a></li>
+            <li><a href="#">Entre</a></li>
+            <li><a href="#">Compras</a></li>
+          </ul>
+        </Nav>
+      </Content>
     </Container>
   );
 };

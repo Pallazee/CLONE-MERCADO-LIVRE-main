@@ -1,45 +1,49 @@
 import styled from "styled-components";
 
-export const Container = styled.div`
+export const Container = styled.header`
   width: 100%;
-  height: 78px;
+  height: 64px;
+
   background: var(--color-header);
   border-bottom: 1px solid var(--color-border);
-  position: absolute;
-  box-sizing: border-box;
-  margin: 0px;
-  padding: 40px;
+
+  display: flex;
+  justify-content: center;
 `;
 
-export const Img = styled.img`
-  margin-top: -14px;
-  float: left;
-  width: 170px;
+export const Content = styled.div`
+  width: 100%;
+  max-width: 1200px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  padding: 0 24px;
+`;
+
+export const Logo = styled.img`
+  height: 190px; /* 🔥 tamanho REAL do ML */
+  width: auto;
+  display: block;
 `;
 
 export const Nav = styled.nav`
-  position: relative;
-
-  > ul {
+  ul {
+    display: flex;
+    gap: 24px;
     list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  a {
+    font-size: 14px;
+    color: var(--color-black);
     text-decoration: none;
-    width: 30%;
-    float: right;
 
-    > li {
-      display: inline-block;
-
-      > a {
-        display: inline;
-        border-top: none;
-        color: var(--color-black);
-        text-decoration: none;
-        padding: 1px 16px;
-      }
-
-      > a:hover {
-        color: var(--color-blue);
-      }
+    &:hover {
+      color: var(--color-blue);
     }
   }
 `;
