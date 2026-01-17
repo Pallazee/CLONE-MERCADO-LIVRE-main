@@ -15,7 +15,8 @@
     "mercadopago": "^2.11.0"
   },
   "devDependencies": {
-    "@types/node": "^20.19.27",
+    "@types/node": "^20.19.30",
+    "ts-node-dev": "^2.0.0",
     "typescript": "^5.9.3"
   }
 }

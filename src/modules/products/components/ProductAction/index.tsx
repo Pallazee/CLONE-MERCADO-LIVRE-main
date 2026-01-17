@@ -25,13 +25,14 @@ const ProductAction: React.FC = () => {
     try {
       const data = await createPreference();
 
-      if (!data?.id) {
-        throw new Error("Preference ID não retornado");
+      if (!data?.init_point) {
+        throw new Error("init_point não retornado pelo backend");
       }
 
-      window.location.href = `https://www.mercadopago.com.br/checkout/v1/redirect?pref_id=${data.id}`;
+      // ✅ REDIRECIONAMENTO CORRETO
+      window.location.href = data.init_point;
     } catch (error) {
-      console.error(error);
+      console.error("Erro ao iniciar pagamento:", error);
       alert("Erro ao iniciar pagamento");
     }
   };
@@ -50,11 +51,11 @@ const ProductAction: React.FC = () => {
       <PriceCard>
         <PriceRow>
           <span className="symbol">R$</span>
-          <span className="fraction">1</span>
-          <span className="cents">99</span>
+          <span className="fraction">79</span>
+          <span className="cents">90</span>
         </PriceRow>
 
-        <InstallmentsInfo>em 3x de R$ 0,68</InstallmentsInfo>
+        <InstallmentsInfo>em até 12x no cartão</InstallmentsInfo>
       </PriceCard>
 
       <StockStatus>Estoque disponível</StockStatus>
@@ -63,7 +64,7 @@ const ProductAction: React.FC = () => {
         <CheckIcon />
         <div>
           <span className="title">Frete Grátis</span>
-          <span className="details">Benefício Lorem Ipsum</span>
+          <span className="details">Entrega rápida e segura</span>
           <a href="#">Ver mais opções</a>
         </div>
       </MethodCard>

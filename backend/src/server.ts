@@ -1,7 +1,7 @@
 import dotenv from "dotenv";
 dotenv.config();
 
-import express from "express";
+import express, { Request, Response } from "express";
 import cors from "cors";
 import { MercadoPagoConfig, Preference, Payment } from "mercadopago";
 
@@ -10,37 +10,45 @@ const app = express();
 /* =========================
    CONFIG BÁSICA
 ========================= */
-app.use(cors({
-  origin: "*",
-  methods: ["GET", "POST"],
-}));
+app.use(
+  cors({
+    origin: "*",
+    methods: ["GET", "POST"],
+  })
+);
 
 app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+
+/* =========================
+   VARIÁVEIS DE AMBIENTE
+========================= */
+const MP_ACCESS_TOKEN = process.env.MP_ACCESS_TOKEN;
+
+if (!MP_ACCESS_TOKEN) {
+  throw new Error("❌ MP_ACCESS_TOKEN NÃO DEFINIDO NO .env");
+}
 
 /* =========================
    MERCADO PAGO CLIENT
 ========================= */
-if (!process.env.MP_ACCESS_TOKEN) {
-  throw new Error("MP_ACCESS_TOKEN NÃO DEFINIDO");
-}
-
-const client = new MercadoPagoConfig({
-  accessToken: process.env.MP_ACCESS_TOKEN,
+const mpClient = new MercadoPagoConfig({
+  accessToken: MP_ACCESS_TOKEN,
 });
 
 /* =========================
-   ROTAS
+   ROTA TESTE
 ========================= */
-app.get("/", (_req, res) => {
+app.get("/", (_req: Request, res: Response) => {
   res.send("🔥 Backend Mercado Pago ONLINE");
 });
 
 /* =========================
    CREATE PREFERENCE
 ========================= */
-app.post("/create_preference", async (_req, res) => {
+app.post("/create_preference", async (_req: Request, res: Response) => {
   try {
-    const preference = new Preference(client);
+    const preference = new Preference(mpClient);
 
     const response = await preference.create({
       body: {
@@ -49,77 +57,63 @@ app.post("/create_preference", async (_req, res) => {
             id: "camiseta-branca-001",
             title: "Camiseta Branca",
             quantity: 1,
-            unit_price: 1.99,
+            unit_price: 79.9,
             currency_id: "BRL",
           },
         ],
 
-        payment_methods: {
-          excluded_payment_methods: [],
-          excluded_payment_types: [],
-          installments: 12,
-        },
-
         back_urls: {
-          success: "https://SEU-FRONT.onrender.com/success",
-          failure: "https://SEU-FRONT.onrender.com/failure",
-          pending: "https://SEU-FRONT.onrender.com/pending",
+          success: "http://localhost:3000/success",
+          failure: "http://localhost:3000/failure",
+          pending: "http://localhost:3000/pending",
         },
-
-        auto_return: "approved",
       },
     });
 
     console.log("✅ PREFERENCE CRIADA:", response.id);
 
-    res.json({ id: response.id });
+    return res.json({
+      id: response.id,
+      init_point: response.init_point, // 🔥 USADO NO FRONT
+    });
   } catch (error: any) {
-    console.error("❌ ERRO AO CRIAR PREFERENCE:", error);
+    console.error("❌ ERRO AO CRIAR PREFERENCE:", error?.message);
 
-    res.status(500).json({
-      error: "Erro ao criar preferência",
-      details: error?.message || error,
+    return res.status(500).json({
+      error: error?.message,
     });
   }
 });
 
 /* =========================
-   WEBHOOK (OBRIGATÓRIO)
+   WEBHOOK MERCADO PAGO
 ========================= */
-app.post("/webhook", async (req, res) => {
+app.post("/webhook", async (req: Request, res: Response) => {
   try {
-    console.log("🔔 WEBHOOK RECEBIDO");
-    console.log(req.body);
+    console.log("🔔 WEBHOOK RECEBIDO:", req.body);
 
     const { type, data } = req.body;
 
-    if (type === "payment") {
-      const paymentId = data.id;
-
-      const payment = new Payment(client);
-      const result = await payment.get({ id: paymentId });
+    if (type === "payment" && data?.id) {
+      const payment = new Payment(mpClient);
+      const result = await payment.get({ id: data.id });
 
       console.log("💰 STATUS:", result.status);
       console.log("💳 MÉTODO:", result.payment_method_id);
-
-      // Aqui você pode:
-      // - salvar no banco
-      // - liberar produto
-      // - enviar email
     }
 
-    res.sendStatus(200);
+    return res.sendStatus(200);
   } catch (error) {
     console.error("❌ ERRO NO WEBHOOK:", error);
-    res.sendStatus(500);
+    return res.sendStatus(500);
   }
 });
 
 /* =========================
    SERVER
 ========================= */
-const PORT = process.env.PORT || 3333;
+const PORT = Number(process.env.PORT) || 3333;
 
 app.listen(PORT, () => {
-  console.log(`🔥 Backend rodando na porta ${PORT}`);
+  console.log(`🔥 Backend rodando em http://localhost:${PORT}`);
 });
